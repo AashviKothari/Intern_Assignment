@@ -1,29 +1,29 @@
 import {
-    FETCH_POSTS_REQUEST,
-    FETCH_POSTS_SUCCESS,
-    FETCH_POSTS_FAILURE
+    FETCH_USERS_REQUEST,
+    FETCH_USERS_SUCCESS,
+    FETCH_USERS_FAILURE
   } from '../actions/actions';
   
   const initialState = {
-    posts: [],
+    users: [],
     isLoading: false,
     error: null
   };
   
   const reducer = (state = initialState, action) => {
     switch (action.type) {
-      case FETCH_POSTS_REQUEST:
+      case FETCH_USERS_REQUEST:
         return {
           ...state,
           isLoading: true
         };
-      case FETCH_POSTS_SUCCESS:
+      case FETCH_USERS_SUCCESS:
         return {
           ...state,
           isLoading: false,
-          posts: action.payload
+          users: action.payload
         };
-      case FETCH_POSTS_FAILURE:
+      case FETCH_USERS_FAILURE:
         return {
           ...state,
           isLoading: false,

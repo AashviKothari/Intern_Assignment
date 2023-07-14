@@ -1,27 +1,28 @@
-export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
+export const FETCH_USERS_REQUEST = 'FETCH_USERS_REQUEST';
+export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
+export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILURE';
 
-export const fetchPostsRequest = () => ({
-  type: FETCH_POSTS_REQUEST
-});
-
-export const fetchPostsSuccess = (posts) => ({
-  type: FETCH_POSTS_SUCCESS,
-  payload: posts
-});
-
-export const fetchPostsFailure = (error) => ({
-  type: FETCH_POSTS_FAILURE,
-  payload: error
-});
-
-export const fetchPosts = () => {
-  return (dispatch) => {
-    dispatch(fetchPostsRequest());
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => response.json())
-      .then((data) => dispatch(fetchPostsSuccess(data)))
-      .catch((error) => dispatch(fetchPostsFailure(error)));
+export const fetchUsersRequest = () => ({
+    type: FETCH_USERS_REQUEST
+  });
+  
+  export const fetchUsersSuccess = (users) => ({
+    type: FETCH_USERS_SUCCESS,
+    payload: users
+  });
+  
+  export const fetchUsersFailure = (error) => ({
+    type: FETCH_USERS_FAILURE,
+    payload: error
+  });
+  
+  export const fetchUsers = () => {
+    return (dispatch) => {
+      dispatch(fetchUsersRequest());
+      fetch('https://randomuser.me/api/?results=10')
+        .then((response) => response.json())
+        .then((data) => dispatch(fetchUsersSuccess(data.results)))
+        .catch((error) => dispatch(fetchUsersFailure(error)));
+    };
   };
-};
+  

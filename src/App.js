@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from './actions/actions';
+import { fetchUsers } from './actions/actions';
 import './App.css';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { posts, isLoading, error } = useSelector((state) => state);
+  const { users, isLoading, error } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   if (isLoading) {
@@ -21,11 +21,13 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1 className="title">Posts</h1>
-      {posts.map((post) => (
-        <div key={post.id} className="post">
-          <h2 className="post-title">{post.title}</h2>
-          <p className="post-body">{post.body}</p>
+      <h1>Users</h1>
+      {users.map((user) => (
+        <div key={user.login.uuid} className="user">
+          <img src={user.picture.medium} alt={user.name.first} />
+          <h2>{user.name.first} {user.name.last}</h2>
+          <p>Email: {user.email}</p>
+          <p>Location: {user.location.city}, {user.location.country}</p>
         </div>
       ))}
     </div>
